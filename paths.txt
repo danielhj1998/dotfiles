@@ -1,3 +1,4 @@
 $HOME/.bashrc
 $HOME/.vimrc
 $HOME/.tmux.conf
+$HOME/.gitconfig
