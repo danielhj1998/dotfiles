@@ -9,7 +9,8 @@ function app-add {
         # copy to the .dln file
         cp $1 $dfilepath 
     else
-        # create new dfile in default editor
+        # create new dfile and open it in default editor
+        touch $dfilepath
         "${EDITOR:-vim}" $dfilepath
     fi
     
