@@ -30,6 +30,8 @@ set-option -g allow-rename off
 ######################
 ### DESIGN CHANGES ###
 ######################
+setw -q -g utf8 on
+set -g default-terminal "screen-256color"
 
 # Colors
 primary=colour96
