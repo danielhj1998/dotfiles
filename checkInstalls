@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if ! node --version > /dev/null 2>&1; then echo "NodeJS is not installed, needed by coc.vim"; fi
+if ! npm --version > /dev/null 2>&1; then echo "npm is not installed, needed by coc.vim"; fi
+if ! eslint -v > /dev/null 2>&1; then echo "ESlint is not installed, needed by coc.vim"; fi
+if ! bash-language-server -v > /dev/null 2>&1; then echo "bash-language-server is not installed, needed by coc.vim"; fi

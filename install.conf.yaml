@@ -12,8 +12,11 @@
     ~/.Xmodmap: Xmodmap.dln
 
 - shell:
-  -
-    command: ./vim/install
-    description: Running Vim specifics installation
-    stdout: true
-    quiet: true
+    -
+        command: ./checkInstalls
+        description: Checking for installed programs needed by some plugins
+        stdout: true
+    -
+        command: ./vim/install
+        description: Running Vim specifics installation
+        stdout: true
