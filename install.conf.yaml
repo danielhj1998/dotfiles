@@ -1,15 +1,19 @@
+- defaults:
+    link:
+      relink: true
+
 - clean: ['~']
 
 - link:
     ~/.tmux.conf: tmux.conf.dln
-    ~/.vimrc: vimrc.dln
+    ~/.vimrc: ./vim/vimrc.dln
     ~/.bashrc: bashrc.dln
     ~/.gitconfig: gitconfig.dln
     ~/.Xmodmap: Xmodmap.dln
 
 - shell:
   -
-    command: if [[ ! -d "$HOME/.vim/bundle/Vundle.vim" ]]; then git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall; fi
-    description: Installing Vundle for vim
+    command: ./vim/install
+    description: Running Vim specifics installation
     stdout: true
     quiet: true

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#Install Vundle for Vim and install the Plugins
+echo "Installling Vundle for Vim and Plugins..."
+if [[ ! -d "$HOME/.vim/bundle/Vundle.vim" ]]; then 
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall;
+else
+    vim +PluginInstall +qall
+fi    
+echo "Vundle and Plugins installation complete"
