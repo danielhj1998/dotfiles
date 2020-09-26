@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-#Install Vundle for Vim and install the Plugins
-echo "Installling Vundle for Vim and Plugins..."
-if [[ ! -d "$HOME/.vim/bundle/Vundle.vim" ]]; then 
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall;
+#Install vim-plug for Vim and install the Plugins
+echo "Installling vim-plug for Vim and Plugins..."
+if [[ ! -e "$HOME/.vim/autoload/plug.vim" ]]; then 
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && vim -E -u "$HOME/.vimrc" +PlugInstall +qall
 else
-    vim +PluginInstall +qall
+    vim -E -u "$HOME/.vimrc" +PlugInstall +qall
 fi    
-echo "Vundle and Plugins installation complete"
+echo "vim-plug and Plugins installation complete"

@@ -1,26 +1,17 @@
+" Enable useful Vim functions (Disable Vi compatibility)
+set nocompatible
+
 "########################
-"#### Vundle config "####
+"###### Vim-plug ########
 "########################
-set nocompatible              " be iMproved, Vundle required
-filetype off                  " Vundle required
+call plug#begin('~/.vim/plugged')
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'vim-airline/vim-airline'
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-
-call vundle#end()
-filetype plugin indent on     " Vundle required
-
-
+call plug#end()
 "############################
 "#### non-Plugin config "####
 "############################
-
-" Vim is based on Vi. Setting `nocompatible` switches from the default
-" Vi-compatibility mode and enables useful Vim functionality. This
 
 set bg=dark
 
