@@ -6,11 +6,12 @@ set nocompatible
 "########################
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'                  " Fancy and helpful status bar
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion, linting, coding like VSCode
+Plug 'preservim/nerdtree'                       " NerdTree file finder
+Plug 'Xuyuanp/nerdtree-git-plugin'              " NerdTree support for modified, error, etc files
+Plug 'ryanoasis/vim-devicons'                   " NerdTree Fancy icons for files and directories
+Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file finder (to search by name)
 
 call plug#end()
 
@@ -189,6 +190,21 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | wincmd p | endif
 
 set encoding=UTF-8
+
+"############ CtrlP config ############
+" To update NerdTree when is open
+function! IsNERDTreeOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! SyncTree()
+    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+        NERDTreeFind
+        wincmd p
+    endif
+endfunction
+
+autocmd BufEnter * call SyncTree()
 
 "############################
 "#### non-Plugin config "####
