@@ -12,6 +12,7 @@ Plug 'preservim/nerdtree'                       " NerdTree file finder
 Plug 'Xuyuanp/nerdtree-git-plugin'              " NerdTree support for modified, error, etc files
 Plug 'ryanoasis/vim-devicons'                   " NerdTree Fancy icons for files and directories
 Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file finder (to search by name)
+Plug 'preservim/nerdcommenter'                  " Powerfull commenter
 
 call plug#end()
 
@@ -205,6 +206,11 @@ function! SyncTree()
 endfunction
 
 autocmd BufEnter * call SyncTree()
+
+"############ NerdCommenter config ############
+" Remap <C-k> to comment
+nmap <C-k> <plug>NERDCommenterToggle
+vmap <C-k> <plug>NERDCommenterToggle
 
 "############################
 "#### non-Plugin config "####
