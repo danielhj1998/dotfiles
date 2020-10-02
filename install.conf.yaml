@@ -7,6 +7,7 @@
 - link:
     ~/.tmux.conf: tmux.conf.dln
     ~/.vimrc: ./vim/vimrc.dln
+    ~/.vim/coc-settings.json: ./vim/coc-settings.json
     ~/.bashrc: bashrc.dln
     ~/.gitconfig: gitconfig.dln
     ~/.Xmodmap: Xmodmap.dln
