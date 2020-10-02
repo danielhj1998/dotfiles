@@ -14,6 +14,7 @@ Plug 'ryanoasis/vim-devicons'                   " NerdTree Fancy icons for files
 Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file finder (to search by name)
 Plug 'preservim/nerdcommenter'                  " Powerfull commenter
 Plug 'airblade/vim-gitgutter'                   " Mark changed lines in a file
+Plug 'christoomey/vim-tmux-navigator'           " Change windows with <C-{hjkl}>
 
 call plug#end()
 
