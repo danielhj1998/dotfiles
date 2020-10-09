@@ -189,8 +189,9 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "############ NerdTree config ############
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
-autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | q
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | wincmd p | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 set encoding=UTF-8
 
