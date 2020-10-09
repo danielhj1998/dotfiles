@@ -212,8 +212,8 @@ autocmd BufEnter * call SyncTree()
 
 "############ NerdCommenter config ############
 " Remap <C-k> to comment
-nmap <C-k> <plug>NERDCommenterToggle
-vmap <C-k> <plug>NERDCommenterToggle
+nmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
+vmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
 
 "############################
 "#### non-Plugin config "####
