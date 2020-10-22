@@ -15,6 +15,7 @@ Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file finder (to search b
 Plug 'preservim/nerdcommenter'                  " Powerfull commenter
 Plug 'airblade/vim-gitgutter'                   " Mark changed lines in a file
 Plug 'christoomey/vim-tmux-navigator'           " Change windows with <C-{hjkl}>
+Plug 'morhetz/gruvbox'                          " Nice retro color scheme for vim
 
 call plug#end()
 
@@ -28,6 +29,10 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-json',
   \]
+
+" coc-prettier format with <C-f>
+vmap <C-f>  <Plug>(coc-format-selected)
+nmap <C-f>  <Plug>(coc-format-selected) 
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -214,6 +219,9 @@ autocmd BufEnter * call SyncTree()
 " Remap <C-k> to comment
 nmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
 vmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
+
+"############### Gruvbox config ###############
+colorscheme gruvbox
 
 "############################
 "#### non-Plugin config "####
