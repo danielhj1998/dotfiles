@@ -16,6 +16,8 @@ Plug 'preservim/nerdcommenter'                  " Powerfull commenter
 Plug 'airblade/vim-gitgutter'                   " Mark changed lines in a file
 Plug 'christoomey/vim-tmux-navigator'           " Change windows with <C-{hjkl}>
 Plug 'morhetz/gruvbox'                          " Nice retro color scheme for vim
+Plug 'alvan/vim-closetag'                       " Nice retro color scheme for vim
+Plug 'chrisbra/Colorizer'                       " Colorize hex values and colors
 
 call plug#end()
 
@@ -28,7 +30,22 @@ let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-eslint',
   \ 'coc-json',
+  \ 'coc-snippets',
   \]
+
+" coc-snippets <TAB> funcionality
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " coc-prettier format with <C-f>
 vmap <C-f>  <Plug>(coc-format-selected)
@@ -222,6 +239,13 @@ vmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
 
 "############### Gruvbox config ###############
 colorscheme gruvbox
+
+"############### CloseTags config ###############
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js,*.erb'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
 "############################
 "#### non-Plugin config "####
