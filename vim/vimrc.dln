@@ -310,6 +310,8 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+" Disable expandtab for certain files
+autocmd FileType asm setlocal noexpandtab
 
 " Enable toggle paste mode, (currently paste messes up with coc-pairs and auto
 " comment lines)
