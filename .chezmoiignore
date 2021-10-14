@@ -4,6 +4,17 @@ LICENSE
 .vim    # using nvim now
 .vimrc  # using nvim now
 
+{{- if (ne .chezmoi.os "linux") }}
+.profile
+.bashrc
+.local/share/nvim
+.Xmodmap
+.zshrc
+.zprofile
+.oh-my-zsh
+.tmux.conf
+{{- end }}
+
 {{- if eq .chezmoi.osRelease.id "raspbian" }}
 .Xmodmap
 .zshrc
