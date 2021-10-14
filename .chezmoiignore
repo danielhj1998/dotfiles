@@ -1,13 +1,15 @@
 README.md
 LICENSE
 .oh-my-zsh/cache/*
+.vim    # using nvim now
+.vimrc  # using nvim now
+
 {{- if eq .chezmoi.osRelease.id "raspbian" }}
 .Xmodmap
 .zshrc
 .zprofile
 .oh-my-zsh
 .tmux.conf
-.config/nvim
 {{- end }}
 
 # Configuration files that have symlinks

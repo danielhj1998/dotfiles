@@ -19,9 +19,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-{{ if (eq .chezmoi.os "linux") }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-{{      if (eq .chezmoi.osRelease.id "ubuntu") }}
+{{- if (eq .chezmoi.os "linux") }}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{-      if (eq .chezmoi.osRelease.id "ubuntu") }}
 # Ubuntu Dist code 
 #####################
 #### Android SDK ####
@@ -45,7 +45,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
 
-{{      end }}
+{{-      end }}
 ## WSL code
 #######################
 #### Windows dirs  ####
@@ -54,5 +54,5 @@ alias cdtareas='cd /mnt/c/Users/Cori/Documents/Tareas/8vo_semestre'
 alias cdwin='cd /mnt/c/Users/Cori'
 alias cdsnotes='cd /mnt/c/Users/Cori/Documents/Tareas/studious/notes/8vo\ Semestre/'
 alias cdpnotes='cd /mnt/c/Users/Cori/Documents/Notas/Personales/'
-{{   end }}
-{{ end }}
+{{-   end }}
+{{- end }}

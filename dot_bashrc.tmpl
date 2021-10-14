@@ -22,6 +22,9 @@ HISTFILESIZE=2000
 ###############
 ### Prompt ###
 ###############
+{{- if (eq .chezmoi.osRelease.id "raspbian") }}
+SEP_ICON=
+{{- else }}
 icon=$(( ( RANDOM % 5 )  + 1 ))
 case $icon in
     1)
@@ -40,6 +43,7 @@ case $icon in
     SEP_ICON=
     ;;
 esac
+{{- end }}
 
 ATTRIBUTE_BOLD='\[\e[1m\]'
 ATTRIBUTE_RESET='\[\e[0m\]'
