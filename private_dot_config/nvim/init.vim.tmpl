@@ -20,9 +20,10 @@ Plug 'morhetz/gruvbox'                          " Nice retro color scheme for vi
 Plug 'alvan/vim-closetag'                       " Tag closer html like
 Plug 'chrisbra/Colorizer'                       " Colorize hex values and colors
 Plug 'vimwiki/vimwiki'                          " Vimwiki for note taking
+{{- if ne .chezmoi.osRelease.id "raspbian"}}
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
                                                 " Markdown Viewer
-Plug 'ferrine/md-img-paste.vim'                 " Copy image from clipboard in md
+{{- end }}
 Plug 'godlygeek/tabular'                        " Syntax Highlighting for markdown
 Plug 'plasticboy/vim-markdown'                  " Including math
 
@@ -42,7 +43,9 @@ let g:coc_global_extensions = [
   \ 'coc-clangd',
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
+{{- if ne .chezmoi.osRelease.id "raspbian"}}
   \ 'coc-swagger',
+{{- end }}
   \]
 
 " coc-spell-checker configuration
@@ -255,10 +258,12 @@ nmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
 vmap <C-_> <plug>NERDCommenterToggle " This works cause <C-/> sends ^_
 
 "############### Gruvbox config ###############
+{{- if (ne .chezmoi.osRelease.id "raspbian")}}
 "For transparent bg:
 autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
             \ |    highlight LineNr     ctermbg=NONE guibg=NONE
             \ |    highlight SignColumn ctermbg=NONE guibg=NONE
+{{- end }}
 colorscheme gruvbox
 
 "############### CloseTags config ###############
@@ -269,6 +274,7 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 "############### Vimwiki config #################
+{{- if ne .chezmoi.osRelease.id "raspbian"}}
 let studiousWiki = {}
 let studiousWiki.path = '/mnt/c/Users/Cori/Documents/Tareas/studious/'
 let studiousWiki.syntax = 'markdown'
@@ -280,6 +286,7 @@ let personalWiki.syntax = 'markdown'
 let personalWiki.ext = '.md'
 
 let g:vimwiki_list = [studiousWiki, personalWiki]
+{{- end }}
 
 " coc-snippets compatibility settings
 let g:vimwiki_global_ext = 0
@@ -288,6 +295,7 @@ let g:vimwiki_table_mappings = 0
 " coc-spell-checker compatibility remap
 nmap <Leader><Space> <Plug>VimwikiToggleListItem
 
+{{- if ne .chezmoi.osRelease.id "raspbian"}}
 "############### Markdown Preview config ########
 nmap <C-e> <Plug>MarkdownPreviewToggle
 let g:mkdp_preview_options = {
@@ -295,12 +303,7 @@ let g:mkdp_preview_options = {
     \ 'sync_scroll_type': 'middle',
     \ }
 let g:mkdp_page_title = '${name}'
-
-"######## Markdown Image Paste config ###########
-autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
- "there are some defaults for image directory and image name, you can change them
- let g:mdip_imgdir = 'img'
- let g:mdip_imgname = 'image'
+{{- end }}
 
 "############### Vim Markdown ###################
 let g:vim_markdown_folding_disabled = 1

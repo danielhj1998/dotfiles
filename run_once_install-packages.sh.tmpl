@@ -2,7 +2,10 @@
 sudo apt update
 ##sudo apt install vim-gtk3
 sudo apt install neovim
-sudo apt install nodejs
+## node js LTE install with nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+nvm --version
+nvm install --lts
 sudo npm -g install eslint
 sudo npm -g install bash-language-server
 sudo apt install python

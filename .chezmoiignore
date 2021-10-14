@@ -24,6 +24,7 @@ LICENSE
 {{- end }}
 
 # Configuration files that have symlinks
-.config/coc/ultisnips # -> snippets
+snippets # <- ~/.config/coc/ultisnips
 # Configuration files that have special symlinks (done by script)
-.oh-my-zsh/custom/themes/cori.zsh-theme # -> cori.zsh-theme
+cori.zsh-theme # <- ~/.oh-my-zsh/custom/themes/cori.zsh-theme
+.oh-my-zsh/custom/themes/cori.zsh-theme # external
