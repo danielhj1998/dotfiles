@@ -1,0 +1,34 @@
+{
+    "languageserver": {
+        "hdlChecker": {
+            "command": "hdl_checker",
+            "args": [
+                "--lsp"
+            ],
+            "filetypes": [
+                "vhdl",
+                "verilog",
+                "systemverilog"
+            ]
+        }
+    },
+
+    "cSpellExt.enableDictionaries": ["spanish"],
+    "cSpell.language": "es,en",
+    "cSpell.minWordLength": 3,
+    "cSpell.enabledLanguageIds": [
+        "javascript",
+        "javascriptreact",
+        "markdown",
+        "vimwiki",
+        "plaintext",
+        "typescript",
+        "typescriptreact",
+        "yml"
+    ],
+    "cSpell.userWords": [
+      "Acelerómetro",
+      "manométrica",
+      "videogames"
+    ]
+}

@@ -1,0 +1,85 @@
+#####################
+### Configuration ###
+#####################
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+shopt -s histappend # append to history file
+shopt -s checkwinsize # if window size changes reprint
+shopt -s globstar # "**" pathname expansion match all files && (sub)&& directories
+
+set -o vi # vim mode on
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+
+###############
+### Prompt ###
+###############
+icon=$(( ( RANDOM % 5 )  + 1 ))
+case $icon in
+    1)
+    SEP_ICON=
+    ;;
+    2)
+    SEP_ICON=
+    ;;
+    3)
+    SEP_ICON=ﰉ
+    ;;
+    4)
+    SEP_ICON=
+    ;;
+    5)
+    SEP_ICON=
+    ;;
+esac
+
+ATTRIBUTE_BOLD='\[\e[1m\]'
+ATTRIBUTE_RESET='\[\e[0m\]'
+COLOR_DEFAULT='\[\e[39m\]'
+COLOR_ORANGE='\[\e[38;5;203m\]'
+COLOR_RED='\[\e[38;5;208m\]'
+COLOR_GREEN='\[\e[38;5;107m\]'
+COLOR_YELLOW='\[\e[38;5;172m\]'
+COLOR_BEIGE='\[\e[38;5;223m\]'
+COLOR_PINK='\[\e[38;5;132m\]'
+COLOR_BLUE='\[\e[38;5;74m\]'
+COLOR_MAGENTA='\[\e[35m\]'
+COLOR_CYAN='\[\e[36m\]'
+
+PS1="${ATTRIBUTE_BOLD}${COLOR_ORANGE}\u${COLOR_DEFAULT}${ATTRIBUTE_RESET} ${COLOR_GREEN}$SEP_ICON${COLOR_DEFAULT} ${COLOR_BEIGE}\w${COLOR_DEFAULT} \$(if [ \$? -ne 0 ]; then echo \"❌ \"; fi)${COLOR_GREEN}${COLOR_DEFAULT} "
+PROMPT_DIRTRIM=2
+
+
+###############
+### Aliases ###
+###############
+
+alias ls='ls --color=auto'
+alias la='ls -la'
+alias cd..='cd ..' 
+alias cd....='cd ../..'
+alias cd......='cd ../../..'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias vim='nvim'
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

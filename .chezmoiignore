@@ -1,0 +1,16 @@
+README.md
+LICENSE
+.oh-my-zsh/cache/*
+{{- if eq .chezmoi.osRelease.id "raspbian" }}
+.Xmodmap
+.zshrc
+.zprofile
+.oh-my-zsh
+.tmux.conf
+.config/nvim
+{{- end }}
+
+# Configuration files that have symlinks
+.config/coc/ultisnips # -> snippets
+# Configuration files that have special symlinks (done by script)
+.oh-my-zsh/custom/themes/cori.zsh-theme # -> cori.zsh-theme

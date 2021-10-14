@@ -1,0 +1,487 @@
+global !p
+texMathZones = ['texMathZone' + x for x in ['X', 'Y']] + ['mkdMath'] + ["VimwikiMath", "VimwikiEqIn", "textSnipTEX", "texStatement"]
+texIgnoreMathZones = ['texMathText']
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
+########################################### Post snippets
+snippet frontmatter "Post frontmatter" b
+---
+layout: post
+title: $1
+tag: $2
+reading_time: $3
+excerpt_separator: <!--intro-->
+---
+
+$0
+endsnippet
+
+########################################### Markdwon syntax snippets
+snippet bf "bold" wA
+**$1**$0
+endsnippet
+
+snippet ik "italic" wA
+*$1*$0
+endsnippet
+
+snippet ___ "line separator" bA
+___________________________________________________________
+endsnippet
+
+########################################### start-math-environment snippets
+snippet mk "Math" wA
+$$1$$0
+endsnippet
+
+snippet dm "Math" wA
+
+$$
+$1
+$$
+
+endsnippet
+
+######################################### context math snippets
+
+context "math()"
+snippet beg "begin{} / end{}" bwAe
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])(\d)' "auto subscript" wrAe
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrAe
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet sr "^2" iAe
+^2
+endsnippet
+
+context "math()"
+snippet cb "^3" iAe
+^3
+endsnippet
+
+context "math()"
+snippet tag "tag" iAe
+\tag{$1}$0
+endsnippet
+
+context "math()"
+snippet tinv "inverse" iAe
+^{-1}
+endsnippet
+
+context "math()"
+snippet td "superscript" iAe
+^{$1}$0
+endsnippet
+
+## fractions
+context "math()"
+snippet // "Fraction" iAe
+\\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet / "VISUAL Fraction" ie
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+context "math()"
+snippet sqrt "Square root" iAe
+\sqrt{$1}$0
+endsnippet
+
+context "math()"
+snippet aligned "align environtment &" iAe
+\begin{aligned}
+	$0
+\end{aligned}
+endsnippet
+
+context "math()"
+snippet cases "cases environtment" iAe
+\begin{cases}
+	$0
+\end{cases}
+endsnippet
+
+## Other snippets
+context "math()"
+priority 10
+snippet boxed "[box]" iAe
+\boxed{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet text "text" iAe
+\text{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet bar "bar" iAe
+\overline{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet hat "hat" iAe
+\hat{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet dot "dot" iAe
+\dot{$1}$0
+endsnippet
+
+context "math()"
+priority 15
+snippet ddot "double dot" iAe
+\ddot{$1}$0
+endsnippet
+
+context "math()"
+snippet cdot "centered dot" iAe
+\cdot
+endsnippet
+
+context "math()"
+priority 10
+snippet vec "vec" iAe
+\vec{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet tilde "tilde" iAe
+\tilde{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet underbrace "underbrace" iAe
+\underbrace{$1}_{$2}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet overbrace "overbrace" iAe
+\overbrace{$1}^{$2}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet mathcal "Mathcal type font" iAe
+\mathcal{$1}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet => "Rightarrow =>" iAe
+\Rightarrow
+endsnippet
+
+context "math()"
+priority 10
+snippet <= "LeftArrow ==>" iAe
+\LeftArrow
+endsnippet
+
+context "math()"
+priority 10
+snippet -> "rightarrow ->" iAe
+\rightarrow
+endsnippet
+
+context "math()"
+priority 10
+snippet <- "leftarrow <-" iAe
+\leftarrow
+endsnippet
+
+context "math()"
+priority 10
+snippet +- "±" iAe
+\pm
+endsnippet
+
+context "math()"
+priority 10
+snippet -+ "∓" iAe
+\mp
+endsnippet
+
+context "math()"
+priority 10
+snippet quad "quad space" iAe
+\quad
+endsnippet
+
+context "math()"
+priority 15
+snippet qquad "double quad space" iAe
+\qquad
+endsnippet
+
+context "math()"
+priority 10
+snippet ... "low ..." iAe
+\ldots
+endsnippet
+
+context "math()"
+priority 10
+snippet l.. "low ..." iAe
+\ldots
+endsnippet
+
+context "math()"
+priority 10
+snippet c.. "center ..." iAe
+\cdots
+endsnippet
+
+context "math()"
+priority 10
+snippet v.. "vertical ..." iAe
+\vdots
+endsnippet
+
+context "math()"
+priority 10
+snippet d.. "diagonal ..." iAe
+\ddots
+endsnippet
+
+# Matrix associated
+context "math()"
+snippet ;; "Matrix separator" iAe
+ & 
+endsnippet
+
+context "math()"
+snippet bmatrix "[matrix]" iAe
+\begin{bmatrix}
+	$0
+\end{bmatrix}
+endsnippet
+
+context "math()"
+snippet array "array{}" iAe
+\begin{array}{$1}
+	$0
+\end{array}
+endsnippet
+
+# brackets
+context "math()"
+priority 10
+snippet brktc "Curly brackets {}" iAe
+\left\\{$1\right\\}$0
+endsnippet
+
+context "math()"
+priority 10
+snippet brkts "Square brackets []" iAe
+\left[$1\right]$0
+endsnippet
+
+context "math()"
+priority 10
+snippet brktp "Parenthesis ()" iAe
+\left($1\right)$0
+endsnippet
+
+# trigonometric
+context "math()"
+priority 10
+snippet sin "sine" iAe
+\sin
+endsnippet
+
+context "math()"
+priority 10
+snippet cos "cosine" iAe
+\cos
+endsnippet
+
+context "math()"
+priority 10
+snippet tan "tangent" iAe
+\tan
+endsnippet
+
+context "math()"
+priority 10
+snippet arct "arc tangent" iAe
+\arctan
+endsnippet
+
+context "math()"
+priority 10
+snippet arcc "arc cosine" iAe
+\arccos
+endsnippet
+
+context "math()"
+priority 10
+snippet arcs "arc sine" iAe
+\arcsin
+endsnippet
+
+# symbols and letters
+context "math()"
+priority 10
+snippet mu "μ" iAe
+\mu
+endsnippet
+
+context "math()"
+priority 10
+snippet alph "α" iAe
+\alpha
+endsnippet
+
+context "math()"
+priority 10
+snippet beta "β" iAe
+\beta
+endsnippet
+
+context "math()"
+priority 10
+snippet gamm "γ" iAe
+\gamma
+endsnippet
+
+context "math()"
+priority 10
+snippet delt "δ" iAe
+\delta
+endsnippet
+
+context "math()"
+priority 10
+snippet Delt "Δ" iAe
+\Delta
+endsnippet
+
+context "math()"
+priority 10
+snippet epsi "ε" iAe
+\varepsilon
+endsnippet
+
+context "math()"
+priority 10
+snippet thet "θ" iAe
+\theta
+endsnippet
+
+context "math()"
+priority 10
+snippet Thet "Θ" iAe
+\Theta
+endsnippet
+
+context "math()"
+priority 10
+snippet lamb "λ" iAe
+\lambda
+endsnippet
+
+context "math()"
+priority 10
+snippet xi "ξ" iAe
+\xi
+endsnippet
+
+context "math()"
+priority 10
+snippet pi "π" iAe
+\pi
+endsnippet
+
+context "math()"
+priority 10
+snippet rho "ρ" iAe
+\rho
+endsnippet
+
+context "math()"
+priority 10
+snippet sigm "σ" iAe
+\sigma
+endsnippet
+
+context "math()"
+priority 10
+snippet Sigm "Σ" iAe
+\Sigma
+endsnippet
+
+context "math()"
+priority 10
+snippet phi "φ" iAe
+\phi
+endsnippet
+
+context "math()"
+priority 10
+snippet Phi "Φ" iAe
+\Phi
+endsnippet
+
+context "math()"
+priority 10
+snippet psi "ψ" iAe
+\psi
+endsnippet
+
+context "math()"
+priority 10
+snippet Psi "Ψ" iAe
+\Psi
+endsnippet
+
+context "math()"
+priority 10
+snippet omeg "ω" iAe
+\omega
+endsnippet
+
+context "math()"
+priority 10
+snippet Omeg "Ω" iAe
+\Omega
+endsnippet
+
+context "math()"
+priority 10
+snippet tau "𝜏" iAe
+{\Large\tau}
+endsnippet

@@ -1,0 +1,71 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet INSTITUTO "Plantilla general para uP, uC e I" b
+				;INSTITUTO POLITECNICO NACIONAL
+				;UPIITA
+				;UP,UC E I
+				;${1:`date +"%d %b %y" | tr [a-z] [A-Z]`}
+				;DHJ
+				;${2:NOMBRE DEL TRABAJO}
+				;DAVID ARTURO GUTIÉRREZ BEGOVICH
+				;ESCRITO PARA PIC16F887 EN ENSAMBLADOR (MPLAB)
+				;${3:DESCRIPCION DEL PROGRAMA}
+
+				PROCESSOR 	16F887
+				__CONFIG 	0X2007,0X2BE4
+				__CONFIG 	0x2008,0X3FFF
+				INCLUDE 	<P16F887.INC>
+				
+				ORG 	0x000
+				$0
+
+				END
+endsnippet
+
+snippet ST1V "Llamado a ST1V" b
+MOVLW 	.${0:VAR1}
+MOVWF 	0x60
+CALL 	ST1V
+endsnippet
+
+snippet ST2V "Llamado a ST2V" b
+MOVLW 	.${1:VAR1}
+MOVWF 	0x62
+MOVLW 	.${0:VAR2}
+MOVWF 	0x61
+CALL 	ST2V
+endsnippet
+
+snippet ST3V "Llamado a ST3V" b
+MOVLW 	.${1:VAR1}
+MOVWF 	0x64
+MOVLW 	.${2:VAR2}
+MOVWF 	0x65
+MOVLW 	.${3:VAR3}
+MOVWF 	0x66
+CALL 	ST3V
+endsnippet

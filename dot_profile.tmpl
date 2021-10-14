@@ -1,0 +1,58 @@
+# the default umask is set in /etc/profile;
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    echo 'here in bash'
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+{{ if (eq .chezmoi.os "linux") }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{      if (eq .chezmoi.osRelease.id "ubuntu") }}
+# Ubuntu Dist code 
+#####################
+#### Android SDK ####
+#####################
+export ANDROID_HOME=/opt/android
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#######################
+##### Temp paths  #####
+#######################
+#export PATH=$HOME/myapps/gnat/bin:$PATH
+#export PERL5LIB=$HOME/marte_2.0_22Feb2017
+#export PATH=$PATH:$HOME/marte_2.0_22Feb2017/utils
+
+#####################
+#### Go Lang ####
+#####################
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
+
+{{      end }}
+## WSL code
+#######################
+#### Windows dirs  ####
+#######################
+alias cdtareas='cd /mnt/c/Users/Cori/Documents/Tareas/8vo_semestre'
+alias cdwin='cd /mnt/c/Users/Cori'
+alias cdsnotes='cd /mnt/c/Users/Cori/Documents/Tareas/studious/notes/8vo\ Semestre/'
+alias cdpnotes='cd /mnt/c/Users/Cori/Documents/Notas/Personales/'
+{{   end }}
+{{ end }}

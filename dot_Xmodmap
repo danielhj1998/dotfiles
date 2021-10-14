@@ -1,0 +1,4 @@
+! Swap keys Caps_Lock <-> Escape
+clear Lock
+keycode 66 = Caps_Lock NoSymbol Caps_Lock
+keycode 9 = Escape NoSymbol Escape

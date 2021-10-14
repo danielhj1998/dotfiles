@@ -1,0 +1,5 @@
+[alias]
+    graph = log --all --graph --decorate --oneline
+[user]
+	name = danielhj1998
+	email = danielhg52@hotmail.com

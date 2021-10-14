@@ -1,0 +1,97 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet entity "VHDL blank module template" b
+library IEEE;  
+use IEEE.STD_LOGIC_1164.ALL;  
+${2:--}use IEEE.numeric_std.all;  
+$2use IEEE.std_logic_unsigned.all;  
+
+entity ${1:module_name} is
+	Port ( ${3:a} : ${4:in}  STD_LOGIC;  
+		   ${7:b} : ${0:inout}  STD_LOGIC_VECTOR (7 downto 0);  
+		   ${5:c} : ${6:out}  STD_LOGIC_VECTOR (7 downto 0));  
+end $1;  
+
+architecture Behavioral of $1 is  
+
+begin  
+
+end Behavioral;
+endsnippet
+
+snippet type "Type definition" b
+type ${1:type_name} is ($0);
+endsnippet
+
+snippet signal "Signal definition" b
+signal ${1:signal_name}: ${0:signal_type};
+endsnippet
+
+snippet constant "Constant definition" b
+constant ${1:const_name}: ${0:const_type}:= X"${2:const_value}";
+endsnippet
+
+snippet std "Standard logic type" w
+STD_LOGIC
+endsnippet
+
+snippet stdvec "Standard logic vector" w
+STD_LOGIC_VECTOR($1 downto ${2:0})$0
+endsnippet
+
+snippet process "Process block" b
+process($0)
+begin
+end process;
+endsnippet
+
+snippet if "If block" b
+if $0 then
+end if;
+endsnippet
+
+snippet elsif "Elsif line" b
+elsif $0 then
+endsnippet
+
+snippet package "Package blank template" b
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+package ${0:packageName} is
+
+end ${0:packageName};
+endsnippet
+
+snippet component "Component block" b
+component ${0:componentName}
+end component;
+endsnippet
+
+snippet "port map" "Component port map line" b
+port map($0);
+endsnippet
