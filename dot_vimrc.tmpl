@@ -8,7 +8,10 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'alker0/chezmoi.vim'                       " Chezmoi highlighting support
 Plug 'vim-airline/vim-airline'                  " Fancy and helpful status bar
+{{- if (ne .chezmoi.osRelease.id "raspbian") }}
+{{- /* Because of the vim-gtk3 version in rapsbian 8.1 */ -}}
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion, linting, coding like VSCode
+{{- end }}
 Plug 'preservim/nerdtree'                       " NerdTree file finder
 Plug 'Xuyuanp/nerdtree-git-plugin'              " NerdTree support for modified, error, etc files
 Plug 'ryanoasis/vim-devicons'                   " NerdTree Fancy icons for files and directories
@@ -20,6 +23,8 @@ Plug 'morhetz/gruvbox'                          " Nice retro color scheme for vi
 
 call plug#end()
 
+{{- if (ne .chezmoi.osRelease.id "raspbian") }}
+{{- /* Because of the vim-gtk3 version in rapsbian 8.1 */ -}}
 "############ Coc config ############
 
 let g:coc_global_extensions = [
@@ -206,6 +211,7 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+{{- end }}
 
 
 "############ NerdTree config ############
