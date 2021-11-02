@@ -286,6 +286,10 @@ let personalWiki.syntax = 'markdown'
 let personalWiki.ext = '.md'
 
 let g:vimwiki_list = [studiousWiki, personalWiki]
+
+" Diary mappings (to open in personalWiki)
+nmap <Leader>di 2<Plug>VimwikiDiaryIndex
+nmap <Leader>dn 2<Plug>VimwikiMakeDiaryNote
 {{- end }}
 
 " coc-snippets compatibility settings
