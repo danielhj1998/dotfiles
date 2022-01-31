@@ -284,6 +284,7 @@ let personalWiki = {}
 let personalWiki.path = '/mnt/c/Users/Cori/Documents/Notas/Personales/'
 let personalWiki.syntax = 'markdown'
 let personalWiki.ext = '.md'
+let personalWiki.auto_diary_index = 1
 
 let g:vimwiki_list = [studiousWiki, personalWiki]
 
@@ -378,7 +379,7 @@ set expandtab
 " Disable expandtab for certain files
 autocmd FileType asm setlocal noexpandtab
 " Set indenting and tab spaces to 2 for certain files
-autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml,arduino setlocal shiftwidth=2 tabstop=2
 
 " Enable toggle paste mode, (currently paste messes up with coc-pairs and auto
 " comment lines)
