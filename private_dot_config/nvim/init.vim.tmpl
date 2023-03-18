@@ -31,6 +31,8 @@ call plug#end()
 
 "############ Coc config ############
 
+let g:coc_disable_startup_warning = 1
+
 let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-pyright',
@@ -379,7 +381,7 @@ set expandtab
 " Disable expandtab for certain files
 autocmd FileType asm setlocal noexpandtab
 " Set indenting and tab spaces to 2 for certain files
-autocmd FileType yaml,arduino,html setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript,yaml,arduino,html setlocal shiftwidth=2 tabstop=2
 
 " Enable toggle paste mode, (currently paste messes up with coc-pairs and auto
 " comment lines)

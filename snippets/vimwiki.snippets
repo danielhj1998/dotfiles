@@ -47,10 +47,13 @@ title: $1
 $0
 endsnippet
 
+#Funciona pero no hace minúsculas ni toma ascii (áéíóú)
 context "index()"
 snippet note "new index note entry" Ae
-[${0:note name}]($0.md)
+[${0:Note name}](${0/[^A-z0-9]+/-/gi}.md)
 endsnippet
+# Este debería funcionar mejor, pero no funcian el \L \E ni la opción a
+#[${0:note name}](${0/\w+/(?1:\L$1\E:-)/gia}.md)
 
 context "index()"
 snippet index "new index, index entry" Ae

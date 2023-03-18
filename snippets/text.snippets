@@ -23,36 +23,3 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-
-snippet micromatter "Microcontroladores Avanzados frontmatter" bA
-/*
- * `!v expand('%:t')`
- * Description: ${1:Programa que ...}
- * Date: `date +%d/%m/%y`
- * Author: Daniel Hernández Jiménez
- */
-
-${2:#define F_CPU 16000000UL}
-
-#include <avr/io.h>
-${3:#include <util/delay.h>}
-
-${4:\\Variables globales
-int i = 0;}
-
-${5://Cabeceras de función
-void myFunc(int i);}
-
-${6://Funciones
-void myFunc(int i)
-{
-}}
-
-int main(void)
-{
-    while(1)
-    {
-        $0
-    }
-}
-endsnippet

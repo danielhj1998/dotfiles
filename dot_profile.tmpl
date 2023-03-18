@@ -2,10 +2,10 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    echo 'here in bash'
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
+    echo 'bashrc loaded'
     fi
 fi
 
@@ -57,7 +57,8 @@ alias cdtareas='cd /mnt/c/Users/Cori/Documents/Tareas/9no_semestre'
 alias cdwin='cd /mnt/c/Users/Cori'
 alias cdsnotes='cd /mnt/c/Users/Cori/Documents/Tareas/studious/notes/9no\ Semestre/'
 alias cdpnotes='cd /mnt/c/Users/Cori/Documents/Notas/Personales/'
-alias cdss='cd /mnt/c/Users/Cori/Documents/Tareas/8vo_semestre/Servicio\ Social/'
+alias cdss='cd /mnt/c/Users/Cori/Documents/Tareas/Servicio\ Social/'
+alias cdtt='cd /mnt/c/Users/Cori/Documents/Tareas/TT/'
 alias cdpro='cd /mnt/c/Users/Cori/Documents/Proyectos/'
 {{-   end }}
 {{- end }}
