@@ -288,7 +288,13 @@ let personalWiki.syntax = 'markdown'
 let personalWiki.ext = '.md'
 let personalWiki.auto_diary_index = 1
 
-let g:vimwiki_list = [personalWiki, studiousWiki]
+let projectWiki = {}
+let projectWiki.path = '/mnt/c/Users/Cori/Documents/Proyectos/'
+let projectWiki.syntax = 'markdown'
+let projectWiki.ext = '.md'
+let projectWiki.auto_diary_index = 1
+
+let g:vimwiki_list = [personalWiki, projectWiki, studiousWiki]
 
 " Diary mappings (to open in personalWiki)
 nmap <Leader>di 2<Plug>VimwikiDiaryIndex
@@ -298,6 +304,7 @@ nmap <Leader>dn 2<Plug>VimwikiMakeDiaryNote
 " coc-snippets compatibility settings
 let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings = 0
+au filetype vimwiki silent! iunmap <buffer> <Tab>
 
 " coc-spell-checker compatibility remap
 nmap <Leader><Space> <Plug>VimwikiToggleListItem
