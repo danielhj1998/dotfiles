@@ -26,6 +26,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 {{- end }}
 Plug 'godlygeek/tabular'                        " Syntax Highlighting for markdown
 Plug 'plasticboy/vim-markdown'                  " Including math
+Plug 'OmniSharp/omnisharp-vim'                  " CSharp language server
+Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multi cursors
 
 call plug#end()
 
@@ -50,23 +52,25 @@ let g:coc_global_extensions = [
 {{- end }}
   \]
 
-" coc-spell-checker configuration
-vmap <C-Space> <Plug>(coc-codeaction-selected)w
-nmap <C-Space> <Plug>(coc-codeaction-selected)w
+" GODOT LSP support https://gist.github.com/lucasecdb/2baf6d328a10d7fea9ec085d868923a0
+let $WINLOCALHOST=system("cat /etc/resolv.conf | grep nameserver | cut -d' ' -f2 | tr -d '\n'")
 
 " coc-snippets <TAB> functionality
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+inoremap <silent><expr><TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <silent><expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr><CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
 xmap <Tab> <Plug>(coc-snippets-select)
 
 " coc-prettier format with <C-f>
@@ -96,36 +100,6 @@ else
     set signcolumn=yes
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-"  other plugin before putting this into your config.""'>'
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : \<"C-h>"
-
-function! s:check_back_space() abort
-      let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-    
-" Use <c-space> to trigger completion.
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at
-" current position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -137,15 +111,47 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use <c-space> to trigger completion.
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocActionAsync('doHover')
-    endif
+" coc-spell-checker configuration
+vmap <silent> <C-Space> <Plug>(coc-codeaction-selected)w
+
+" Use <C-Space> to execute code action or
+" show documentation
+if has('nvim')
+    nnoremap <silent> <C-Space> :call CodeActionOrDocumentation()<CR>
+else
+    nnoremap <silent> <C-@> :call CodeActionOrDocumentation()<CR>
+endif
+
+function! CodeActionOrDocumentation()
+  let tryHover = 0
+  if CocAction('hasProvider', 'codeAction')
+      silent verbose call CocActionAsync('codeAction', 'cursor')
+      if (!empty(v:errmsg))
+          let tryHover = 1
+      endif
+  else
+      let tryHover = 1
+  endif
+
+  echon ''
+  if (tryHover)
+      if (index(['vim','help'], &filetype) >= 0)
+          execute 'h '.expand('<cword>')
+      else
+          if CocAction('hasProvider', 'hover')
+            call CocActionAsync('doHover')
+          else
+            call feedkeys('<C-Space>', 'in')
+          endif
+      endif
+  endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -322,6 +328,16 @@ let g:mkdp_page_title = '${name}'
 "############### Vim Markdown ###################
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
+
+"############### OmniSharp config ###################
+let g:OmniSharp_translate_cygwin_wsl = 1
+
+"############### Vim Visual Multi ###################
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-w>'
+let g:VM_maps['Find Subword Under'] = '<C-w>'
+let g:VM_maps['Select Cursor Down'] = '<S-j>'
+let g:VM_maps['Select Cursor Up']   = '<S-k>'
 
 "############################
 "#### non-Plugin config "####

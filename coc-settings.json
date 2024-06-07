@@ -10,6 +10,17 @@
                 "verilog",
                 "systemverilog"
             ]
+        },
+        "godot":{
+            "host": "${env:WINLOCALHOST}",
+            "port": 6005,
+            "filetypes": ["gdscript"]
+        },
+        "csharp-ls":{
+            "command": "csharp-ls.exe",
+            "filetypes": ["cs"],
+            "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"],
+            "enable": false
         }
     },
 
