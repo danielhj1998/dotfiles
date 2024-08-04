@@ -1,0 +1,11 @@
+#!/bin/sh
+{{- if eq .chezmoi.os "linux" }}
+    {{- if eq .chezmoi.osRelease.id "ubuntu" }}
+    ln -sf $(chezmoi source-path)/cori.zsh-theme ~/.oh-my-zsh/custom/themes/cori.zsh-theme
+    {{- end }}
+{{- else if eq .chezmoi.os "windows" }}
+New-Item -Path "$env:APPLOCALDATA\nvim\coc-settings.json" -ItemType SymbolicLink -Value "$HOME\.local\share\chezmoi\coc-settings.json"
+
+Exit
+{{- end }}
+

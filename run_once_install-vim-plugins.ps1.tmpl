@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Run plug and coc instalations
+{{- if eq .chezmoi.os "linux" }}
+nvim -E -u "~/.config/nvim/init.vim" +PlugInstall +qall
+nvim -E -u "~/.config/nvim/init.vim" +CocInstall
+{{end}}
+
+{{- if eq .chezmoi.os "windows" }}
+nvim -E -u "~/AppData/Local/nvim/init.vim" +PlugInstall +qall
+nvim -E -u "~/AppData/Local/nvim/init.vim" +CocInstall
+{{end}}

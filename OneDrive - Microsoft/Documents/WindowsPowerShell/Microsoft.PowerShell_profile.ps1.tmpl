@@ -1,0 +1,46 @@
+# theme
+$theme = "negligible"
+oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/$theme.omp.json" | Invoke-Expression
+
+# alias
+set-alias vim nvim
+set-alias wc measure-object
+set-alias unzip expand-archive
+set-alias open invoke-item
+
+function grep
+{
+    [CmdletBinding()]
+    param(
+        [switch]$r,
+        [Parameter(Position=0)]
+        [string]$pattern,
+        [Parameter(ValueFromPipeline=$true)]
+        [string]$path
+    )
+    process
+    {
+        if ($r)
+        {
+            select-string -Pattern $pattern -Path $path
+        }
+        else
+        {
+            $path | findstr.exe $pattern
+        }
+    }
+}
+
+function la
+{
+    ls -force
+}
+
+# set vim as default for cmdline and editor
+if ($env:TERM_PROGRAM -eq 'vscode') {
+    $env:EDITOR = 'vim'
+} else {
+    Set-Variable -Name EDITOR -Value 'vim' -Scope Global
+}
+
+Set-PSReadlineOption -EditMode Vi
