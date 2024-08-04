@@ -12,7 +12,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion, linting, codin
 Plug 'preservim/nerdtree'                       " NerdTree file finder
 Plug 'Xuyuanp/nerdtree-git-plugin'              " NerdTree support for modified, error, etc files
 Plug 'ryanoasis/vim-devicons'                   " NerdTree Fancy icons for files and directories
-Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file finder (to search by name)
 Plug 'preservim/nerdcommenter'                  " Powerfull commenter
 Plug 'airblade/vim-gitgutter'                   " Mark changed lines in a file
 Plug 'christoomey/vim-tmux-navigator'           " Change windows with <C-{hjkl}>
@@ -26,6 +25,8 @@ Plug 'godlygeek/tabular'                        " Syntax Highlighting for markdo
 Plug 'plasticboy/vim-markdown'                  " Including math
 Plug 'OmniSharp/omnisharp-vim'                  " CSharp language server
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multi cursors
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -265,6 +266,31 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 "############### Vimwiki config #################
+"{{- if eq .chezmoi.hostname "CORISPC"}}
+let studiousWiki = {}
+let studiousWiki.path = '/mnt/c/Users/Cori/Documents/Tareas/studious/'
+let studiousWiki.syntax = 'markdown'
+let studiousWiki.ext = '.md'
+
+let personalWiki = {}
+let personalWiki.path = '/mnt/c/Users/Cori/Documents/Notas/Personales/'
+let personalWiki.syntax = 'markdown'
+let personalWiki.ext = '.md'
+let personalWiki.auto_diary_index = 1
+
+let projectWiki = {}
+let projectWiki.path = '/mnt/c/Users/Cori/Documents/Proyectos/'
+let projectWiki.syntax = 'markdown'
+let projectWiki.ext = '.md'
+let projectWiki.auto_diary_index = 1
+
+let g:vimwiki_list = [personalWiki, projectWiki, studiousWiki]
+
+" Diary mappings (to open in personalWiki)
+nmap <Leader>di 2<Plug>VimwikiDiaryIndex
+nmap <Leader>dn 2<Plug>VimwikiMakeDiaryNote
+
+"{{- else if eq .chezmoi.hostname "DESKTOP-04GCFPH"}}
 let personalWiki = {}
 let personalWiki.path = 'C:\Users\danielhern\Documents\notes'
 let personalWiki.syntax = 'markdown'
@@ -272,10 +298,7 @@ let personalWiki.ext = '.md'
 let personalWiki.auto_diary_index = 1
 
 let g:vimwiki_list = [personalWiki]
-
-" Diary mappings (to open in personalWiki)
-" nmap <Leader>di 2<Plug>VimwikiDiaryIndex
-" nmap <Leader>dn 2<Plug>VimwikiMakeDiaryNote
+{{- end }}
 
 " coc-snippets compatibility settings
 let g:vimwiki_global_ext = 0

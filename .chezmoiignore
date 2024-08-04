@@ -3,7 +3,7 @@ LICENSE
 .oh-my-zsh/cache/*
 {{- if eq .chezmoi.os "linux" }}
 AppData
-"OneDrive - Microsoft"
+OneDrive - Microsoft
     {{- if eq .chezmoi.osRelease.id "raspbian" }}
     .vim/coc-settings.json # not needed cause not using coc
                            # because of apt vim-gtk3 version
