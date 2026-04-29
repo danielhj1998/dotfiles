@@ -32,6 +32,20 @@ endglobal
 
 extends markdown
 
+snippet oncallfront "Jekyl OnCall FrontMatter" bA
+---
+layout: oncall-index
+Title: `!v strftime('%Y %B %d')` to `!v strftime('%d', localtime() + 7 * 24 * 60 * 60)`
+---
+
+# Incidents
+- $0
+
+# Improvements
+
+# Handoff
+endsnippet
+
 snippet reportfront "Jekyl Report FrontMatter" bA
 ---
 layout: note
@@ -40,9 +54,9 @@ layout: note
 # Problem Description
 $0
 
-# Investigation
-# Work
-# Validation
+# Investigation work
+# Implementation work
+# Validation work
 endsnippet
 
 snippet frontmatter "Jekyl Note FrontMatter" bA
@@ -73,4 +87,10 @@ endsnippet
 context "index()"
 snippet index "new index, index entry" Ae
 [${0:directory name}]($0/index.md)
+endsnippet
+
+# [2025 May 21 to 28](./2025/may/21-28/index.md)
+context "index()"
+snippet oncallIndex "new oncall index entry" eA
+[`!v strftime('%Y %B %d')` to `!v strftime('%d', localtime() + 7 * 24 * 60 * 60)`](./`!v strftime('%Y/%B/%d')`-`!v strftime('%d', localtime() + 7 * 24 * 60 * 60)`/index.md)
 endsnippet

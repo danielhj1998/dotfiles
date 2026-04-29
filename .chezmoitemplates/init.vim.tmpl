@@ -27,6 +27,7 @@ Plug 'OmniSharp/omnisharp-vim'                  " CSharp language server
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multi cursors
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
+Plug 'sphamba/smear-cursor.nvim'                " Cursor animation
 
 call plug#end()
 
@@ -330,6 +331,11 @@ let g:VM_maps['Find Under']         = '<C-w>'
 let g:VM_maps['Find Subword Under'] = '<C-w>'
 let g:VM_maps['Select Cursor Down'] = '<S-j>'
 let g:VM_maps['Select Cursor Up']   = '<S-k>'
+
+"############### Smear Cursor ###################
+lua require('smear_cursor').setup({
+    \cursor_color = '#d3cdc3',
+\})
 
 "############################
 "#### non-Plugin config "####
