@@ -6,10 +6,9 @@ LICENSE
 .vim/**
 
 {{- if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) -}}
+.config/glzr
 AppData/
 AppData/**
-OneDrive - Microsoft/
-OneDrive - Microsoft/**
 .vsvimrc
     {{ if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "raspbian")) }}
     .Xmodmap
@@ -28,6 +27,7 @@ OneDrive - Microsoft/**
 
 {{ if eq .chezmoi.os "windows" }}
 .config/zsh
+.config/aerospace
 .profile
 .bashrc
 .local/share/nvim
