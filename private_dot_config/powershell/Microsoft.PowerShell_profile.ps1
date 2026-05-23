@@ -3,6 +3,7 @@ set-alias vim nvim
 set-alias wc measure-object
 set-alias unzip expand-archive
 set-alias open invoke-item
+set-alias which get-command
 
 function cdnotes
 {
