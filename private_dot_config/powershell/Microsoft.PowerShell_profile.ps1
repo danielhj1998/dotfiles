@@ -1,8 +1,4 @@
-# theme
-$theme = "negligible"
-oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/$theme.omp.json" | Invoke-Expression
-
-# alias
+# ALIAS
 set-alias vim nvim
 set-alias wc measure-object
 set-alias unzip expand-archive
@@ -12,7 +8,6 @@ function cdnotes
 {
     cd 'C:\Users\danielhern\Documents\notes'
 }
-
 function grep
 {
     [CmdletBinding()]
@@ -35,7 +30,6 @@ function grep
         }
     }
 }
-
 function la
 {
     ls -force
@@ -48,4 +42,12 @@ if ($env:TERM_PROGRAM -eq 'vscode') {
     Set-Variable -Name EDITOR -Value 'vim' -Scope Global
 }
 
+# VI Mode
 Set-PSReadlineOption -EditMode Vi
+
+# STARSHIP
+$ENV:STARSHIP_CONFIG = "~/.config/starship/starship.toml"
+Invoke-Expression (&starship init powershell)
+
+# ZOXIDE
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
