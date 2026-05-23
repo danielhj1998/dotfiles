@@ -46,6 +46,9 @@ if ($env:TERM_PROGRAM -eq 'vscode') {
 # VI Mode
 Set-PSReadlineOption -EditMode Vi
 
+# YAZI
+$ENV:YAZI_FILE_ONE = "/Program Files/Git/usr/bin/file.exe"
+
 # STARSHIP
 $ENV:STARSHIP_CONFIG = "~/.config/starship/starship.toml"
 Invoke-Expression (&starship init powershell)
