@@ -5,8 +5,9 @@ LICENSE
 .vim/
 .vim/**
 
-{{- if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) -}}
+{{ if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) }}
 .config/glzr
+.config/powershell
 AppData/
 AppData/**
 .vsvimrc
