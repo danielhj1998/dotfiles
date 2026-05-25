@@ -1,11 +1,11 @@
 local wezterm = require("wezterm")
 return {
 	adjust_window_size_when_changing_font_size = false,
-	-- color_scheme = 'Catppuccin Mocha',
-	-- color_scheme = "Gruvbox Material (Gogh)",
-	color_scheme = "Gruvbox dark, pale (base16)",
+	color_scheme = "Catppuccin Mocha",
+	-- color_scheme = "Dracula",
+	-- color_scheme = "Gruvbox dark, pale (base16)",
 	enable_tab_bar = false,
-	font_size = 14.0,
+	font_size = 15.0,
 	font = wezterm.font("JetBrainsMono Nerd Font"),
 	-- macos_window_background_blur = 40,
 	macos_window_background_blur = 30,
