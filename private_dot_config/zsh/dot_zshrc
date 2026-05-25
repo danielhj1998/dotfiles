@@ -47,9 +47,6 @@ fi
 # export GEM_HOME="$HOME/gems"
 # export PATH="$HOME/gems/bin:$PATH"
 
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -81,6 +78,11 @@ zinit ice depth=1;                                       zinit light jeffreytse/
 zinit ice wait"0" lucent;                                zinit light MichaelAquilina/zsh-you-should-use
 zinit ice wait"0" lucent atload"_zsh_autosuggest_start"; zinit light zsh-users/zsh-autosuggestions
 zinit ice wait"0" lucent;                                zinit light zsh-users/zsh-syntax-highlighting
+
+function zvm_after_init() {
+  # FZF
+  source <(fzf --zsh)
+}
 
 # STARSHIP
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
