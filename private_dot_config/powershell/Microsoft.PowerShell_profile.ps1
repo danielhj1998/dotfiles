@@ -57,5 +57,10 @@ $ENV:YAZI_FILE_ONE = "/Program Files/Git/usr/bin/file.exe"
 $ENV:STARSHIP_CONFIG = "~/.config/starship/starship.toml"
 Invoke-Expression (&starship init powershell)
 
+# FZF keybindings
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' `
+                -PSReadlineChordReverseHistory 'Ctrl+r'
+
 # ZOXIDE
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
