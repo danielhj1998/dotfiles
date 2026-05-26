@@ -50,6 +50,7 @@ Set-PSReadlineOption -EditMode Vi
 $ENV:XDG_CONFIG_HOME="$HOME/.config"
 
 # YAZI
+$ENV:YAZI_CONFIG_HOME="$HOME/.config/yazi"
 $ENV:YAZI_FILE_ONE = "/Program Files/Git/usr/bin/file.exe"
 
 # STARSHIP
