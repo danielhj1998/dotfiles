@@ -46,6 +46,9 @@ if ($env:TERM_PROGRAM -eq 'vscode') {
 # VI Mode
 Set-PSReadlineOption -EditMode Vi
 
+# Override config location for NVIM
+$ENV:XDG_CONFIG_HOME="$HOME/.config"
+
 # YAZI
 $ENV:YAZI_FILE_ONE = "/Program Files/Git/usr/bin/file.exe"
 

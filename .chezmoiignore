@@ -8,8 +8,6 @@ LICENSE
 {{ if (or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux")) }}
 .config/glzr
 .config/powershell
-AppData/
-AppData/**
 .vsvimrc
     {{ if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "raspbian")) }}
     .Xmodmap
