@@ -1,0 +1,7 @@
+# [Created by task 3.4.2 6/2/2026 23:27:25]
+data.location=~/.local/share/task
+hooks.location=~/.config/task/hooks
+news.version=3.4.2
+
+include ~/.config/task/themes/catppuccin.theme
+
