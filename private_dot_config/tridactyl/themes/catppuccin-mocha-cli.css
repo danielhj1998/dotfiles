@@ -1,0 +1,278 @@
+/*
+  Catppuccin Mocha CLI for Tridactyl
+  by devnullvoid
+*/
+:root {
+  /* Catppuccin Mocha Palette Colors */
+  --rosewater: #f5e0dc;
+  --flamingo: #f2cdcd;
+  --pink: #f5c2e7;
+  --mauve: #cba6f7;
+  --red: #f38ba8;
+  --maroon: #eba0ac;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+  --text: #cdd6f4;
+  --subtext1: #bac2de;
+  --subtext0: #a6adc8;
+  --overlay2: #9399b2;
+  --overlay1: #7f849c;
+  --overlay0: #6c7086;
+  --surface2: #585b70;
+  --surface1: #45475a;
+  --surface0: #313244;
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+
+  /* Generic */
+  --tridactyl-font-family:
+    "JetBrainsMono Nerd Font", "Monaspace Krypton", "SF Mono", monospace;
+  --tridactyl-font-family-sans: "Monaspace Neon", "SF Pro", sans-serif;
+  --tridactyl-cmdl-font-family: var(--tridactyl-font-family) !important;
+  --tridactyl-cmplt-font-family: var(--tridactyl-font-family) !important;
+  --tridactyl-hintspan-font-family: var(--tridactyl-font-family) !important;
+  --tridactyl-font-size: 12pt;
+  --tridactyl-small-font-size: calc(var(--tridactyl-font-size) * 0.75);
+  --tridactyl-bg: var(--base);
+  --tridactyl-fg: var(--text);
+  --tridactyl-logo: url("moz-extension://__MSG_@@extension_id__/static/logo/Tridactyl_64px.png");
+  --tridactyl-scrollbar-color: auto;
+
+  /* Mode indicator */
+  --tridactyl-status-font-family: var(--tridactyl-font-family);
+  --tridactyl-status-font-size: var(--tridactyl-small-font-size);
+  --tridactyl-status-bg: var(--tridactyl-bg);
+  --tridactyl-status-fg: var(--tridactyl-fg);
+  --tridactyl-status-border: 1px var(--overlay0) solid;
+  --tridactyl-status-border-radius: 2px;
+
+  /* Search highlight */
+  --tridactyl-search-highlight-color: var(--yellow);
+
+  /* Hinting */
+
+  /* Hint character tags */
+  --tridactyl-hintspan-font-family: var(--tridactyl-font-family-sans);
+  --tridactyl-hintspan-font-size: var(--tridactyl-small-font-size);
+  --tridactyl-hintspan-font-weight: bold;
+  --tridactyl-hintspan-fg: var(--base);
+  --tridactyl-hintspan-pressed-fg: var(--tridactyl-hintspan-fg);
+  --tridactyl-hintspan-bg: var(--blue);
+  --tridactyl-hintspan-border-color: var(--blue);
+  --tridactyl-hintspan-border-width: 0px;
+  --tridactyl-hintspan-border-style: solid;
+  --tridactyl-hintspan-js-background: var(--overlay1);
+
+  /* Element highlights */
+  --tridactyl-hint-active-fg: var(--base);
+  --tridactyl-hint-active-bg: var(--green);
+  --tridactyl-hint-active-outline: 1px solid var(--blue);
+
+  --tridactyl-hint-bg: var(--blue);
+  --tridactyl-hint-outline: 1px solid var(--blue);
+
+  /* :viewsource */
+  --tridactyl-vs-bg: var(--tridactyl-bg);
+  --tridactyl-vs-fg: var(--tridactyl-fg);
+  --tridactyl-vs-font-family: var(--tridactyl-font-family);
+
+  /*commandline*/
+
+  --tridactyl-cmdl-bg: var(--tridactyl-bg);
+  --tridactyl-cmdl-fg: var(--tridactyl-fg);
+  --tridactyl-cmdl-line-height: 1.5;
+  /*--tridactyl-cmdl-font-family: monospace;*/
+  --tridactyl-cmdl-font-size: calc(var(--tridactyl-font-size) * 0.75);
+
+  /*completions*/
+
+  --tridactyl-cmplt-option-height: 1.4em;
+  --tridactyl-cmplt-fg: var(--tridactyl-fg);
+  --tridactyl-cmplt-bg: var(--tridactyl-bg);
+  --tridactyl-cmplt-font-size: calc(var(--tridactyl-font-size) * 9 / 12);
+  --tridactyl-cmplt-border-top: 1px solid var(--overlay0);
+
+  /*sectionHeader*/
+
+  --tridactyl-header-first-bg: var(--surface0);
+  --tridactyl-header-second-bg: var(--surface1);
+  --tridactyl-header-third-bg: var(--surface2);
+
+  --tridactyl-header-font-size: inherit;
+  --tridactyl-header-font-weight: bold;
+  --tridactyl-header-border-bottom: 1px solid var(--overlay0);
+
+  /*url style*/
+
+  --tridactyl-url-text-decoration: none;
+  --tridactyl-url-fg: var(--green);
+  --tridactyl-url-bg: var(--tridactyl-bg);
+  --tridactyl-url-cursor: pointer;
+
+  /*option focused*/
+
+  --tridactyl-of-fg: var(--text);
+  --tridactyl-of-bg: var(--surface1);
+
+  /*new tab spoiler box*/
+  --tridactyl-highlight-box-bg: var(--surface0);
+  --tridactyl-highlight-box-fg: var(--text);
+
+  --tridactyl-private-window-icon-url: url("chrome://browser/skin/privatebrowsing/private-browsing.svg");
+
+  --tridactyl-container-fingerprint-url: url("resource://usercontext-content/fingerprint.svg");
+  --tridactyl-container-briefcase-url: url("resource://usercontext-content/briefcase.svg");
+  --tridactyl-container-dollar-url: url("resource://usercontext-content/dollar.svg");
+  --tridactyl-container-cart-url: url("resource://usercontext-content/cart.svg");
+  --tridactyl-container-circle-url: url("resource://usercontext-content/circle.svg");
+  --tridactyl-container-gift-url: url("resource://usercontext-content/gift.svg");
+  --tridactyl-container-vacation-url: url("resource://usercontext-content/vacation.svg");
+  --tridactyl-container-food-url: url("resource://usercontext-content/food.svg");
+  --tridactyl-container-fruit-url: url("resource://usercontext-content/fruit.svg");
+  --tridactyl-container-pet-url: url("resource://usercontext-content/pet.svg");
+  --tridactyl-container-tree-url: url("resource://usercontext-content/tree.svg");
+  --tridactyl-container-chill-url: url("resource://usercontext-content/chill.svg");
+
+  --tridactyl-container-color-blue: var(--blue);
+  --tridactyl-container-color-turquoise: var(--sky);
+  --tridactyl-container-color-green: var(--green);
+  --tridactyl-container-color-yellow: var(--yellow);
+  --tridactyl-container-color-orange: var(--peach);
+  --tridactyl-container-color-red: var(--red);
+  --tridactyl-container-color-pink: var(--pink);
+  --tridactyl-container-color-purple: var(--mauve);
+
+  --tridactyl-externaledit-bg: var(--tridactyl-logo) no-repeat center;
+
+  --currentline: var(--mantle); /* or --surface0 */
+  --tridactyl-fg: var(--text);
+  --tridactyl-bg: var(--base);
+  --tridactyl-url-fg: var(--rosewater);
+  --tridactyl-url-bg: var(--base);
+  --tridactyl-highlight-box-bg: var(--mantle);
+  --tridactyl-highlight-box-fg: var(--text);
+  --tridactyl-of-fg: var(--text);
+  --tridactyl-of-bg: var(--mantle);
+
+  /* Command Line Specific */
+  --tridactyl-cmdl-fg: var(--text);
+  --tridactyl-cmdl-bg: var(--base);
+
+  /* Hint character tags */
+  --tridactyl-hintspan-fg: var(--base) !important;
+  --tridactyl-hintspan-bg: var(--peach) !important;
+
+  /* Element Highlights (using "none") */
+  /*
+    --tridactyl-hint-active-fg: none;
+    --tridactyl-hint-active-bg: none;
+    --tridactyl-hint-active-outline: none;
+    --tridactyl-hint-bg: none;
+    --tridactyl-hint-outline: none;
+    */
+
+  /* Element Colors */
+  --tridactyl-border: var(--lavender);
+  --tridactyl-completions-title: var(--blue);
+  --tridactyl-completions-title-focused: var(--pink);
+  --tridactyl-completions-url: var(--green);
+  --tridactyl-completions-header: var(--peach);
+}
+
+#command-line-holder {
+  border-top: 1px solid var(--tridactyl-border);
+  background: var(--tridactyl-bg);
+}
+
+#tridactyl-input {
+  color: var(--tridactyl-fg);
+  background: var(--tridactyl-bg);
+}
+
+#completions table {
+}
+
+#completions > div {
+}
+
+/* COMPLETIONS */
+
+#completions {
+  color: var(--tridactyl-fg);
+  background: var(--tridactyl-bg);
+}
+
+#completions .HistoryCompletionSource {
+}
+
+#completions .HistoryCompletionSource table {
+}
+
+#completions .BmarkCompletionSource {
+}
+
+#completions table tr td.prefix,
+#completions table tr td.privatewindow,
+#completions table tr td.container,
+#completions table tr td.icon {
+}
+
+#completions .BufferCompletionSource table {
+}
+
+#completions table tr.BufferCompletionOption {
+}
+#completions table tr.BufferCompletionOption td.content {
+}
+
+#completions table tr .title,
+#completions table tr td.excmd {
+  color: var(--tridactyl-completions-title);
+}
+
+#completions table tr .content,
+#completions table tr td.documentation {
+}
+#completions table tr.ExcmdCompletionOption .documentation {
+}
+
+#completions table tr {
+}
+
+#completions table tr td {
+}
+
+#completions .sectionHeader {
+  color: var(--tridactyl-completions-header);
+}
+
+#cmdline_iframe {
+}
+
+.TridactylStatusIndicator {
+  background: var(--tridactyl-bg) !important;
+  border: 1px var(--lavender) solid !important;
+}
+
+#completions .focused {
+  background: var(--currentline);
+  font-weight: bold;
+}
+#completions .focused td.title,
+#completions .focused td.excmd {
+  color: var(--tridactyl-completions-title-focused);
+}
+
+#completions .focused .url,
+#completions .focused td.documentation,
+#completions .focused td.content {
+  background: var(--currentline);
+  color: var(--tridactyl-completions-url);
+}
