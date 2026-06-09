@@ -2,9 +2,15 @@
 # Fallback value (if you omit the key): config-version = 1
 config-version = 2
 
-# You can use it to add commands that run after AeroSpace startup.
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget sketchybar',
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5'
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
 
 # Start AeroSpace at login
 start-at-login = false
@@ -81,12 +87,12 @@ run = 'layout floating'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    inner.horizontal = [{ monitor.main = 10 }, 5]
+    inner.horizontal = [{ monitor.main = 5 }, 15]
     inner.vertical =   0
-    outer.left =       [{ monitor.main = 10 }, 5]
-    outer.bottom =     0
-    outer.top =        0
-    outer.right =      0
+    outer.left =       [{ monitor.main = 5 }, 15]
+    outer.right =      [{ monitor.main = 5 }, 15]
+    outer.top =        [{ monitor.main = 20 }, 60]
+    outer.bottom =     [{ monitor.main = 5 }, 15]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
