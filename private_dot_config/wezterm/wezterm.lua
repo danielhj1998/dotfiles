@@ -1,4 +1,6 @@
 local wezterm = require("wezterm")
+local custom_keys = require("keys")
+
 return {
 	adjust_window_size_when_changing_font_size = false,
 	color_scheme = "Catppuccin Mocha",
@@ -7,27 +9,14 @@ return {
 	enable_tab_bar = false,
 	font_size = 15.0,
 	font = wezterm.font("JetBrainsMono Nerd Font"),
-	-- macos_window_background_blur = 40,
 	macos_window_background_blur = 30,
-
-	-- window_background_image = '',
-	-- window_background_image_hsb = {
-	-- 	brightness = 0.01,
-	-- 	hue = 1.0,
-	-- 	saturation = 0.5,
-	-- },
-	-- window_background_opacity = 0.92,
 	window_background_opacity = 1.0,
-	-- window_background_opacity = 0.78,
-	-- window_background_opacity = 0.20,
 	window_decorations = "RESIZE",
-	keys = {
-		{
-			key = "'",
-			mods = "CTRL",
-			action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
-		},
-	},
+
+	disable_default_key_bindings = true,
+	keys = custom_keys.keys,
+	enable_csi_u_key_encoding = true,
+
 	mouse_bindings = {
 		-- Ctrl-click will open the link under the mouse cursor
 		{

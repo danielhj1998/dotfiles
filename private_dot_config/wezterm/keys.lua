@@ -1,0 +1,52 @@
+local wezterm = require("wezterm")
+local act = wezterm.action
+
+return {
+	keys = {
+		{ key = "'", mods = "CTRL", action = act.ClearScrollback("ScrollbackAndViewport") },
+		{ key = ")", mods = "CTRL", action = act.ResetFontSize },
+		{ key = ")", mods = "SHIFT|CTRL", action = act.ResetFontSize },
+		{ key = "+", mods = "CTRL", action = act.IncreaseFontSize },
+		{ key = "+", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
+		{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+		{ key = "-", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
+		{ key = "-", mods = "SUPER", action = act.DecreaseFontSize },
+		{ key = "0", mods = "CTRL", action = act.ResetFontSize },
+		{ key = "0", mods = "SHIFT|CTRL", action = act.ResetFontSize },
+		{ key = "0", mods = "SUPER", action = act.ResetFontSize },
+		{ key = "=", mods = "CTRL", action = act.IncreaseFontSize },
+		{ key = "=", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
+		{ key = "=", mods = "SUPER", action = act.IncreaseFontSize },
+		{ key = "C", mods = "CTRL", action = act.CopyTo("Clipboard") },
+		{ key = "C", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
+		{ key = ">", mods = "SUPER", action = act.ShowDebugOverlay },
+		{ key = "n", mods = "SUPER", action = act.SpawnWindow },
+		-- { key = "P", mods = "CTRL", action = act.ActivateCommandPalette },
+		-- { key = "P", mods = "SHIFT|CTRL", action = act.ActivateCommandPalette },
+		{ key = "Q", mods = "SUPER", action = act.QuitApplication },
+		{ key = "R", mods = "SUPER", action = act.ReloadConfiguration },
+		{
+			key = "U",
+			mods = "CTRL",
+			action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
+		},
+		{
+			key = "U",
+			mods = "SHIFT|CTRL",
+			action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
+		},
+		{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
+		{ key = "V", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+		{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
+		{ key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
+		{
+			key = "u",
+			mods = "SHIFT|CTRL",
+			action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
+		},
+		{ key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+		{ key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
+		{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
+		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
+	},
+}
