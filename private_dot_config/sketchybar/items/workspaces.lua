@@ -5,6 +5,7 @@ local app_icons = require("helpers.app_icons")
 local aerospace = require("helpers.aerospace")
 
 sbar.add("event", "aerospace_workspace_change")
+sbar.add("event", "aerospace_window_change")
 
 local workspaces      = { "1", "2", "3", "4" }
 local ws_items        = {}  -- ws_items[ws]              = local item
@@ -60,13 +61,15 @@ for _, ws in ipairs(workspaces) do
           string = ws,
           color  = colors.surface1,
           font   = { family = settings.font.text, style = settings.font.style_map["Bold"], size = 14.0 },
-          padding_left  = 8,
-          padding_right = 4,
+          padding_left  = 0,
+          padding_right = 0,
+          width         = 0,
         },
         label = {
           string        = icons.monitor .. " " .. aerospace.direction_from_to(disp, home),
           color         = colors.surface1,
-          padding_right = 8,
+          padding_right = 0,
+          width         = 0,
           font          = { family = settings.font.text, style = settings.font.style_map["Regular"], size = 12.0 },
         },
         background   = { drawing = false },
@@ -143,19 +146,25 @@ local function update_all_workspaces(focused_ws)
           },
         })
 
-        -- Remote items: hidden for empty workspaces; focused number stays green
+        -- Remote items: collapsed for empty/unfocused workspaces; bracket stays drawing=true always
         if ws_remote_items[ws] then
           for disp, remote in pairs(ws_remote_items[ws]) do
-            local on_other = new_home ~= disp
-            remote:set({
-              display = on_other and disp or 0,
-              drawing = on_other and has_windows,
-              icon    = { color = is_focused and colors.green or colors.surface1 },
-              label   = {
-                string = icons.monitor .. " " .. aerospace.direction_from_to(disp, new_home),
-                color  = colors.surface1,
-              },
-            })
+            local on_other  = new_home ~= disp
+            local show      = on_other and (has_windows or is_focused)
+            if show then
+              remote:set({
+                icon  = { width = "dynamic", padding_left = 8, padding_right = 4,
+                          color = is_focused and colors.green or colors.surface1 },
+                label = { width = "dynamic", padding_right = 8,
+                          string = icons.monitor .. " " .. aerospace.direction_from_to(disp, new_home),
+                          color  = colors.surface1 },
+              })
+            else
+              remote:set({
+                icon  = { width = 0, padding_left = 0, padding_right = 0 },
+                label = { width = 0, padding_right = 0 },
+              })
+            end
           end
         end
       end)
@@ -166,6 +175,9 @@ end
 local ws_observer = sbar.add("item", { drawing = false, updates = true })
 ws_observer:subscribe("aerospace_workspace_change", function(env)
   update_all_workspaces(env.FOCUSED_WORKSPACE)
+end)
+ws_observer:subscribe("aerospace_window_change", function()
+  update_all_workspaces(current_focused_ws)
 end)
 
 sbar.exec("aerospace list-workspaces --focused", function(output)
