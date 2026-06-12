@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # VI MODE
 bindkey -v
@@ -22,13 +22,11 @@ alias ltree='eza --long --all --tree --level 2'
 alias ..='cd ..' 
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias vim='nvim'
-alias open='wsl-open'
+alias cat='bat --plain'
+alias bat='bat --plain'
+alias less='moor'
+alias lgit='lazygit'
 
 cx() {
   cd $* &&
@@ -42,10 +40,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# RUBY
-# Install Ruby Gems to ~/gems
-# export GEM_HOME="$HOME/gems"
-# export PATH="$HOME/gems/bin:$PATH"
+# MOOR
+export MOOR="--quit-if-one-screen"
+export PAGER="moor"
+
+# HERMES
+export HERMES_HOME="$HOME/.config/hermes"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
