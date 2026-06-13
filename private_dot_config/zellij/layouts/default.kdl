@@ -32,7 +32,7 @@ layout {
                 // Right:  activity pipes  →  notifications  →  clock
                 format_left   "{mode}#[bg=$base] #[fg=$blue,bold]  {session} "
                 format_center "{tabs}"
-                format_right  "{pipe_claude_activity}{notifications}#[fg=$overlay1,bg=$base]  {datetime}"
+                format_right  "{pipe_zj_activity}#[fg=$overlay1,bg=$base]  {datetime}"
                 format_space  "#[bg=$base] "
 
                 border_enabled  "false"
@@ -86,27 +86,16 @@ layout {
                 tab_active_sync         "#[fg=$text,bg=$surface0,bold] {name}  "
                 tab_separator           "#[fg=$surface0,bg=$base]│"
 
-                // ── Activity indicators ────────────────────────────────────────────────
-                // Each source gets its own named pipe widget. When a pipe's value is ""
-                // it takes up zero space — conditional visibility with no coordinator needed.
-                // Multiple active sources stack side-by-side (intentional — useful info).
+                // ── Activity indicator ─────────────────────────────────────────────────
+                // Single unified pipe for all activity sources (Claude, build, deploy, etc.).
+                // Lifecycle is managed entirely by ~/.config/zellij/scripts/notify.sh:
+                //   - working states: persistent until overwritten
+                //   - success/error:  auto-clears after N seconds (token-based, concurrency-safe)
                 //
-                // To add a new source:
-                //   1. Add pipe_<name>_format + pipe_<name>_rendermode below
-                //   2. Prepend {pipe_<name>} to format_right above
-                //   3. Write to it via: ~/.config/zellij/scripts/zj-pipe.sh <name> "<msg>"
-                //
-                // Source: claude — Claude Code tool activity
-                // Written by ~/.config/zellij/scripts/claude-hook.sh
-                pipe_claude_activity_format     "#[fg=$blue,bg=$base]{output}"
-                pipe_claude_activity_rendermode "static"
-
-                // ── Notifications (transient toasts) ───────────────────────────────────
-                // Triggered via: zellij pipe -- "zjstatus::notify::<message>"
-                // Auto-hides after notification_show_interval seconds.
-                notification_format_unread           "#[fg=$green,bg=$base,bold] {message} "
-                notification_format_no_notifications ""
-                notification_show_interval           "5"
+                // To add a new source: call notify.sh <profile> <status> from any script.
+                // Add a [profiles.<name>] entry to notifications.toml for custom messages.
+                pipe_zj_activity_format     "#[fg=$text,bg=$base]{output}"
+                pipe_zj_activity_rendermode "dynamic"
 
                 // ── Datetime ──────────────────────────────────────────────────────────
                 // Passive info, rightmost — same role as Sketchybar clock widget.

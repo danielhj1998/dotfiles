@@ -1,0 +1,7 @@
+[styles]
+success = { icon = "󰄬", color = "#a6e3a1", duration = 5 }
+error   = { icon = "⛌", color = "#f38ba8", duration = 5 }
+working = { icon = "✺", color = "#f9e2af", duration = 0 }
+
+[profiles]
+claude  = { success = "󱙺 done", error = "󱙺 error" }
